@@ -23,7 +23,7 @@
    sudo docker run --name jupyterlab -p 8888:8888 -v /home/ubuntu/jupyterlab:/home/jovyan/work jupyter/datascience-notebook
    ```
 
-   Learn token value using
+   See the token value using
    ```
    sudo docker logs jupyterlab
    ```
