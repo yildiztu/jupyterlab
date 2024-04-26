@@ -23,9 +23,19 @@
    sudo docker run --name jupyterlab -p 8888:8888 -v /home/ubuntu/jupyterlab:/home/jovyan/work jupyter/datascience-notebook
    ```
 
-4. After running the above command, you will see some logs in the terminal. Near the end, you will see a URL starting with `http://127.0.0.1:8888/?token=`, copy that URL.
+   Learn token value using
+   ```
+   sudo docker logs jupyterlab
+   ```
 
-5. Open a web browser and paste the URL from the previous step. This will open up JupyterLab in your browser.
+   or without the need for token value
+   ```
+   sudo docker run --detach --name jupyterlab -p 8888:8888 -v /home/ubuntu/jupyterlab:/home/jovyan/work jupyter/datascience-notebook start.sh jupyter lab --NotebookApp.token=''
+   ```
+
+5. After running the above command, you will see some logs in the terminal. Near the end, you will see a URL starting with `http://127.0.0.1:8888/?token=`, copy that URL.
+
+6. Open a web browser and paste the URL from the previous step. This will open up JupyterLab in your browser.
 
 Now you can start using JupyterLab from Docker in your Ubuntu 22.04 environment. Note that the data in the `/path/to/notebook/folder` directory on your host machine will be accessible within the JupyterLab environment.
 
