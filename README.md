@@ -32,8 +32,8 @@ Now you can start using JupyterLab from Docker in your Ubuntu 22.04 environment.
 Remember to stop and remove the container when you're done with JupyterLab using the following commands:
 
 ```
-docker stop jupyterlab
-docker rm jupyterlab
+sudo docker stop jupyterlab
+sudo docker rm jupyterlab
 ```
 
 This will clean up the container and remove it from your system.
