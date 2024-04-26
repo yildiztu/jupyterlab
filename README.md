@@ -115,3 +115,49 @@ This will clean up the container and remove it from your system.
 8. Once the certificate is successfully obtained and configured, you can access your JupyterLab instance securely via `https://jupyterlab.mydomain.com`.
 
 Remember to renew the SSL certificate before it expires by using the `certbot renew` command. Let's Encrypt certificates are typically valid for 90 days and can be auto-renewed using a cron job or systemd timer.
+
+
+# To set a password for JupyterLab, you can use the `jupyter notebook password` command, which is available in the Jupyter Notebook package.
+
+Here are the steps to set a password for JupyterLab:
+
+1. Access the container running JupyterLab using the following command:
+
+```bash
+sudo docker exec -it jupyterlab bash
+```
+
+Replace `jupyterlab` with the name or ID of your running container.
+
+2. Once inside the container's command prompt, run the following command to create a password:
+
+```bash
+jupyter notebook password
+```
+
+3. You will be prompted to enter a password. After entering your desired password, press Enter.
+
+4. The command will generate a hashed password. It will look something like this:
+
+```
+Enter password:
+Verify password:
+[NotebookPasswordApp] Wrote hashed password to /home/jovyan/.jupyter/jupyter_notebook_config.json
+```
+
+The hashed password is stored in the `.jupyter/jupyter_notebook_config.json` file.
+
+5. Exit the container by typing `exit` in the command prompt.
+
+After setting the password, you can restart the JupyterLab container with the `-v` flag mapping the location of the `.jupyter` directory, which contains the hashed password. This allows the password to persist across container restarts.
+
+Here's an example of how to restart the container with the password configured:
+
+```bash
+sudo docker run --detach --name jupyterlab -p 8888:8888 -v /home/ubuntu/jupyterlab:/home/jovyan/work -v /home/ubuntu/jupyterlab/config:/home/jovyan/.jupyter jupyter/datascience-notebook
+```
+
+In the above command, `/home/ubuntu/jupyterlab/config` is the local directory where you want to store the JupyterLab configuration files, including the hashed password.
+
+After restarting the container, the password you set will be required to access JupyterLab.
+
