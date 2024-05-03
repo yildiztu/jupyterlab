@@ -206,3 +206,7 @@ In the above command, `/home/ubuntu/jupyterlab/config` is the local directory wh
 
 After restarting the container, the password you set will be required to access JupyterLab.
 
+### root access to jupyterlab
+```
+docker exec --user root -it jupyterlab bash
+```
