@@ -65,6 +65,10 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 ```
 pip install diffusers transformers accelerate scipy safetensors
 ```
+or for conda
+```
+conda install -c conda-forge diffusers transformers accelerate scipy safetensors
+```
 
 ## Test CUDA
 ```
