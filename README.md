@@ -50,7 +50,7 @@ This will clean up the container and remove it from your system.
 
 # AI Test
 
-## Docker with GPU support
+## Run Docker with GPU support
 ```
 sudo docker run --gpus all --detach --name jupyterlab -p 8888:8888 -v /home/ubuntu/jupyterlab:/home/jovyan/work jupyter/datascience-notebook start.sh jupyter lab --NotebookApp.token=''
 ```
