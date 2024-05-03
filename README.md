@@ -48,6 +48,51 @@ sudo docker rm jupyterlab
 
 This will clean up the container and remove it from your system.
 
+# AI Test
+
+
+```
+sudo docker run --gpus all --detach --name jupyterlab -p 8888:8888 -v /home/ubuntu/jupyterlab:/home/jovyan/work jupyter/datascience-notebook start.sh jupyter lab --NotebookApp.token=''
+```
+
+```
+https://pytorch.org/get-started/locally/
+
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+
+```
+pip install diffusers transformers accelerate scipy safetensors
+```
+
+```
+import torch
+torch.cuda.is_available()
+```
+
+
+```
+import torch
+from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
+
+model_id = "stabilityai/stable-diffusion-2-1"
+
+# Use the DPMSolverMultistepScheduler (DPM-Solver++) scheduler here instead
+pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+
+torch.cuda.is_available()
+
+pipe = pipe.to("cuda")
+
+prompt = "a photo of an astronaut riding a horse on mars"
+image = pipe(prompt).images[0]
+    
+image.save("astronaut_rides_horse.png")
+```
+
+
 # To obtain a Let's Encrypt SSL certificate for your JupyterLab instance running on `jupyterlab.mydomain.com`, you can use Certbot, a widely used tool for managing SSL certificates. Here's how you can do it:
 
 1. Install Certbot and the appropriate Certbot plugin for the web server in your Ubuntu 22.04 system by running the following commands:
