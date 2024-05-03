@@ -50,7 +50,7 @@ This will clean up the container and remove it from your system.
 
 # AI Test
 
-
+## Docker with GPU support
 ```
 sudo docker run --gpus all --detach --name jupyterlab -p 8888:8888 -v /home/ubuntu/jupyterlab:/home/jovyan/work jupyter/datascience-notebook start.sh jupyter lab --NotebookApp.token=''
 ```
@@ -61,16 +61,18 @@ https://pytorch.org/get-started/locally/
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-
+## Must install
 ```
 pip install diffusers transformers accelerate scipy safetensors
 ```
 
+## Test CUDA
 ```
 import torch
 torch.cuda.is_available()
 ```
 
+## Example 1
 ```
 from diffusers import AutoPipelineForText2Image
 import torch
@@ -83,6 +85,7 @@ prompt = "A cinematic shot of a baby racoon wearing an intricate italian priest 
 image = pipe(prompt=prompt, num_inference_steps=1, guidance_scale=0.0).images[0]
 ```
 
+## Example 2
 ```
 import torch
 from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
