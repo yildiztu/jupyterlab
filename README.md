@@ -79,6 +79,7 @@ import torch
 
 pipe = AutoPipelineForText2Image.from_pretrained("stabilityai/sdxl-turbo", torch_dtype=torch.float16, variant="fp16")
 pipe.to("cuda")
+pipe.enable_model_cpu_offload()
 pipe.enable_attention_slicing()
 
 prompt = "A cinematic shot of a baby racoon wearing an intricate italian priest robe."
